@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+       <!-- INCLUDING JQUERY-->
+       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+       <script type="text/javascript">
+       $(document).ready(function(){ 
+        $.ajax({
+            url: 'http://localhost:5000/contacts',
+            dataType: 'json',
+            success: function(data) {
+                for (var i=0; i<data.length; i++) {
+                    var row = $('<tr><td>' + data[i].name+ '</td><td>' + data[i].phone+'</td>');
+                    $('#contactTable').append(row);
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown){
+                alert('Error: ' + textStatus + ' - ' + errorThrown);
+            }
+        });
+      })
+        </script>
+
+<style>
+  table {
+      width: 50%;
+  }
+  th {
+      background: #f1f1f1;
+      font-weight: bold;
+      padding: 6px;
+  }
+  td {
+      background: #f9f9f9;
+      padding: 6px;
+  }
+  </style>
+
+  </head>
+  <body>
+    <!-- Table to display all names -->
+    <section>
+      
+      <h1>Contacts</h1>
+
+      <!-- TABLE CONSTRUCTION-->
+      <table id='contactTable'>
+          <!-- HEADING FORMATION -->
+          <tr>
+              <th>Name</th>
+              <th>Phone Number</th>
+          </tr>
+           <!-- button to go back to index.html so you can enter more names-->
+          <label>
+            <button onclick="window.location.href='index.html'">Back</button>
+          </label>
+
+  </section>
+ 
+
+
+
+   
+
+    <script src="" async defer></script>
+  </body>
+</html>
