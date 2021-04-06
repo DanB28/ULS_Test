@@ -7,19 +7,15 @@ const fse = require("fs-extra");
 const PORT = process.env.PORT || 5000;
 
 //middleware
-
-//body parser
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-//middleware for /contacts
-app.use("/contacts", (req, res, next) => {
+//Read contacts file middleware
+function readContactsFile(req, res, next) {
   fse.readJSON("./data/contacts.json").then((data) => {
     res.send(data.contacts);
   });
-});
+  next();
+}
 
-//save middleware
-app.use("/save", (req, res, next) => {
+function saveData(req, res, next) {
   const newContact = {
     name: req.body.name,
     phone: req.body.phone,
@@ -38,17 +34,21 @@ app.use("/save", (req, res, next) => {
     });
 
   next();
-});
+}
 
 //Routes
 //GET route for all Contacts
-app.get("/contacts", (req, res) => {
-  res.json(contactsFile);
+app.get("/contacts", readContactsFile, (req, res) => {
+  console.log("Contacts Table Updated");
 });
+//body parser
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
-//POST route for contacts ajax call\
-app.post("/save", (req, res) => {
+//POST route for contacts
+app.post("/save", saveData, (req, res) => {
   res.send(req.body);
+  console.log("Contact Added");
 });
 
 //static folder for pages

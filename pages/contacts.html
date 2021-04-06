@@ -7,13 +7,15 @@
     <title></title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="" />
+    <link rel="stylesheet" href="./style/contactsStyle.css">
+
        <!-- INCLUDING JQUERY-->
        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+        <!--Script to populate table using data from /contacts get route-->
        <script type="text/javascript">
        $(document).ready(function(){ 
         $.ajax({
+          type:"GET",
             url: 'http://localhost:5000/contacts',
             dataType: 'json',
             success: function(data) {
@@ -29,47 +31,25 @@
       })
         </script>
 
-<style>
-  table {
-      width: 50%;
-  }
-  th {
-      background: #f1f1f1;
-      font-weight: bold;
-      padding: 6px;
-  }
-  td {
-      background: #f9f9f9;
-      padding: 6px;
-  }
-  </style>
 
   </head>
   <body>
-    <!-- Table to display all names -->
     <section>
       
       <h1>Contacts</h1>
 
-      <!-- TABLE CONSTRUCTION-->
+      <!-- Table Construction-->
       <table id='contactTable'>
-          <!-- HEADING FORMATION -->
+         
           <tr>
               <th>Name</th>
               <th>Phone Number</th>
           </tr>
-           <!-- button to go back to index.html so you can enter more names-->
+           <!-- button to go back to index.html so you can enter more names, normally wouldnt inline this-->
           <label>
             <button onclick="window.location.href='index.html'">Back</button>
           </label>
 
   </section>
- 
-
-
-
-   
-
-    <script src="" async defer></script>
   </body>
 </html>

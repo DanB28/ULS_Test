@@ -7,9 +7,11 @@
     <title></title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="" />
+    <link rel="stylesheet" href="./style/indexStyle.css" />
     <script href="./app.js"></script>
+    <link rel="stylesheet" href="../style/indexStyle.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!--script to set name and phone to object then post using /save route which then saves to contacts.json-->
     <script type="text/javascript">
       $(document).ready(
         $(function () {
@@ -17,10 +19,9 @@
             var data = {};
             data.name = $("#name").val();
             data.phone = $("#phone").val();
-            // test to see if data is empty and if so gives alert, fields also have validation
-            //not ideal but a quick and easy way to do it
+            // checks to see if data is empty and if so gives alert, fields also have validation not ideal but a quick and easy way to do it
             if (data.name == "" || data.phone == "") {
-              alert("please enter both name and phone number.");
+              alert("Please enter BOTH Name and Phone Number.");
             } else {
               $.ajax({
                 type: "POST",
@@ -37,49 +38,10 @@
         })
       );
     </script>
-    <script type="text/javascript">
-      document.getElementById("viewButton").onclick = function () {
-        location.href = "http:localhost:5000/contacts.html";
-      };
-    </script>
-
-    <style>
-      input[type="text"],
-      select {
-        width: 100%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-      }
-
-      input[type="submit"] {
-        width: 100%;
-        background-color: #4caf50;
-        color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-      }
-
-      input[type="submit"]:hover {
-        background-color: #45a049;
-      }
-
-      div {
-        border-radius: 5px;
-        background-color: #f2f2f2;
-        padding: 20px;
-      }
-    </style>
   </head>
   <body>
-    <h1>Enter Info</h1>
-    <!-- form for entrys -->
+    <h2>Enter Info</h2>
+    <!--Form Construction for entry-->
     <form id="contactInfo">
       <div>
         <label>Name</label>
@@ -109,7 +71,8 @@
       </div>
     </form>
     <label>
-      <button onclick="window.location.href='contacts.html'">
+      <!--button navigates to contacts.html to view contacts, noramlly wouldnt inline this-->
+      <button id="viewButton" onclick="window.location.href='contacts.html'">
         View contacts
       </button>
     </label>
